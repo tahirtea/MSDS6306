@@ -1,2 +1,1 @@
-# MSDS6306
-Doing Data Science
+The purpose of this repository is a repository for MSDS program
