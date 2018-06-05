@@ -1,0 +1,70 @@
+---
+title: "DDS Homework 4"
+author: "Tahir Ahmad"
+date: "June 3, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1: Loading FiveThirtyEight Data
+
+Navigate on GitHub to https://github.com/rudeboybert/fivethirtyeight and read README.md
+
+```{r fivethirtyeight}
+#install.packages("fivethirtyeight") #install package
+setwd("C:/Users/18880/MSDS6306")
+
+
+load(paste(getwd(),"/HW4/fivethirtyeight/data/college_recent_grads.rda",sep="",collapse = NULL))
+
+df <- college_recent_grads # assign data set "college_recent_grads" to an object "df"
+
+vignette("fivethirtyeight", package="fivethirtyeight") # Use a more detailed list of the data sets to write out the URL in a comment of the related news story: http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
+
+dim(df) #getting dimension of the data frame
+colnames(df) #getting column names of the data frame
+
+```
+
+## Question 2: Data Summary
+
+a. Write an R command that gives you the column names of the data frame. Right after that, write one that counts the number of columns but not rows.
+
+```{r datasummary}
+colnames(df) #R command that gives the column names of the data frame
+length(colnames(df)) # R command that gives the number of columns
+```
+b. Generate a count of each unique major_category in the data frame.
+
+```{r major_category}
+#install.packages('plyr') #This library has a function to count the number of occurences
+library(plyr)
+major_count <- count(df$major_category) #using count function to count the number of occurences
+mycolnames <- c("Major", "Frequency") # new column names
+colnames(major_count) <- mycolnames # apply this to the new data frame
+major_count
+```
+
+c. Generate bar plot from major_count
+```{r major_category_plot}
+par(las=2) # to make the text perpendicular to the axis
+
+#Make sure to label the title with something informative (check the vignette if you need), label the x and y axis, and make it any color other than grey. Assign the major_category labels to their respective bar. Flip the barplot horizontally so that bars extend to the right, not upward.
+barplot(major_count$Frequency, names.arg = major_count$Major, xlab = "Major", ylab = "Frequency", main = "Frequency of Major", horiz=TRUE, col="blue")
+```
+
+d. Write the fivethirtyeight data to a csv file. Make sure it does not have row labels.
+```{r write_csv}
+write.csv(x=df, file=paste(getwd(),"/HW4/college_recent_grads.csv",sep="",collapse = NULL), row.names = FALSE)
+```
+
+
+## Question 3: Codebook
+
+a. Start a new repository on GitHub for your SMU MSDS homework. On your local device, make sure there is a directory for Homework at the minimum; you are welcome to add whatever you would like to this repo in addition to your requirements here.
+b. Create a README.md file which explains the purpose of the repository, the topics included, the sources for the material you post, and contact information in case of questions. Remember, the one in the root directory should be general. You are welcome to make short READMEs for each assignment individually in other folders.
+c. In one (or more) of the nested directories, post your RMarkdown script, HTML file, and data from 'fivethirtyeight.' Make sure that in your README or elsewhere that you credit fivethirtyeight in some way.
+d. In your RMarkdown script, please provide the link to this GitHub so the grader can see it: "https://github.com/tahirtea/MSDS_Git/tree/master/MSDS6306"
