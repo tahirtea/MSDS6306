@@ -15,10 +15,10 @@ Navigate on GitHub to https://github.com/rudeboybert/fivethirtyeight and read RE
 
 ```{r fivethirtyeight}
 #install.packages("fivethirtyeight") #install package
-setwd("C:/Users/18880/MSDS6306")
+setwd("C:/Users/18880/MSDS_Git/MSDS6306/Homework/HW4")
 
 
-load(paste(getwd(),"/HW4/fivethirtyeight/data/college_recent_grads.rda",sep="",collapse = NULL))
+load(paste(getwd(),"/college_recent_grads.rda",sep="",collapse = NULL))
 
 df <- college_recent_grads # assign data set "college_recent_grads" to an object "df"
 
@@ -53,12 +53,12 @@ c. Generate bar plot from major_count
 par(las=2) # to make the text perpendicular to the axis
 
 #Make sure to label the title with something informative (check the vignette if you need), label the x and y axis, and make it any color other than grey. Assign the major_category labels to their respective bar. Flip the barplot horizontally so that bars extend to the right, not upward.
-barplot(major_count$Frequency, names.arg = major_count$Major, xlab = "Major", ylab = "Frequency", main = "Frequency of Major", horiz=TRUE, col="blue")
+barplot(major_count$Frequency, names.arg = major_count$Major, ylab = "Major", xlab = "Frequency", main = "Frequency of Major", horiz=TRUE, col="blue")
 ```
 
 d. Write the fivethirtyeight data to a csv file. Make sure it does not have row labels.
 ```{r write_csv}
-write.csv(x=df, file=paste(getwd(),"/HW4/college_recent_grads.csv",sep="",collapse = NULL), row.names = FALSE)
+write.csv(x=df, file=paste(getwd(),"/college_recent_grads.csv",sep="",collapse = NULL), row.names = FALSE)
 ```
 
 
